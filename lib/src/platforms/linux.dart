@@ -1,4 +1,4 @@
-part of '../package_rename.dart';
+part of '../../package_rename_plus.dart';
 
 void _setLinuxConfigurations(dynamic linuxConfig) {
   try {
@@ -11,16 +11,16 @@ void _setLinuxConfigurations(dynamic linuxConfig) {
     _setLinuxPackageName(linuxConfigMap[_packageNameKey]);
     _setLinuxExecutableName(linuxConfigMap[_executableKey]);
   } on _PackageRenameException catch (e) {
-    _logger
-      ..e('${e.message}ERR Code: ${e.code}')
-      ..e('Skipping Linux configuration!!!');
+    PackageRenamePlusLogger.error('${e.message}ERR Code: ${e.code}');
+    PackageRenamePlusLogger.error('Skipping Linux configuration!!!');
   } catch (e) {
-    _logger
-      ..w(e.toString())
-      ..e('ERR Code: 255')
-      ..e('Skipping Linux configuration!!!');
+    PackageRenamePlusLogger.warning(e.toString());
+    PackageRenamePlusLogger.error('ERR Code: 255');
+    PackageRenamePlusLogger.error('Skipping Linux configuration!!!');
   } finally {
-    if (linuxConfig != null) _logger.w(_majorTaskDoneLine);
+    if (linuxConfig != null) {
+      PackageRenamePlusLogger.warning(_majorTaskDoneLine);
+    }
   }
 }
 
@@ -68,18 +68,17 @@ void _setLinuxAppName(dynamic appName) {
       runnerMyAppFile.writeAsStringSync(newTitleRunnerMyAppString);
     }
 
-    _logger.i('Linux app title set to: `$appName` (my_application.cc)');
+    PackageRenamePlusLogger.info(
+        'Linux app title set to: `$appName` (my_application.cc)');
   } on _PackageRenameException catch (e) {
-    _logger
-      ..e('${e.message}ERR Code: ${e.code}')
-      ..e('Linux App Name change failed!!!');
+    PackageRenamePlusLogger.error('${e.message}ERR Code: ${e.code}');
+    PackageRenamePlusLogger.error('Linux App Name change failed!!!');
   } catch (e) {
-    _logger
-      ..w(e.toString())
-      ..e('ERR Code: 255')
-      ..e('Linux App Name change failed!!!');
+    PackageRenamePlusLogger.warning(e.toString());
+    PackageRenamePlusLogger.error('ERR Code: 255');
+    PackageRenamePlusLogger.error('Linux App Name change failed!!!');
   } finally {
-    if (appName != null) _logger.f(_minorTaskDoneLine);
+    if (appName != null) PackageRenamePlusLogger.warning(_minorTaskDoneLine);
   }
 }
 
@@ -101,18 +100,19 @@ void _setLinuxPackageName(dynamic packageName) {
 
     cmakeListsFile.writeAsStringSync(newAppIDCmakeListsString);
 
-    _logger.i('Linux application id set to: `$packageName` (CMakeLists.txt)');
+    PackageRenamePlusLogger.info(
+        'Linux application id set to: `$packageName` (CMakeLists.txt)');
   } on _PackageRenameException catch (e) {
-    _logger
-      ..e('${e.message}ERR Code: ${e.code}')
-      ..e('Linux Application ID change failed!!!');
+    PackageRenamePlusLogger.error('${e.message}ERR Code: ${e.code}');
+    PackageRenamePlusLogger.error('Linux Application ID change failed!!!');
   } catch (e) {
-    _logger
-      ..w(e.toString())
-      ..e('ERR Code: 255')
-      ..e('Linux Application ID change failed!!!');
+    PackageRenamePlusLogger.warning(e.toString());
+    PackageRenamePlusLogger.error('ERR Code: 255');
+    PackageRenamePlusLogger.error('Linux Application ID change failed!!!');
   } finally {
-    if (packageName != null) _logger.f(_minorTaskDoneLine);
+    if (packageName != null) {
+      PackageRenamePlusLogger.warning(_minorTaskDoneLine);
+    }
   }
 }
 
@@ -139,17 +139,16 @@ void _setLinuxExecutableName(dynamic exeName) {
 
     cmakeListsFile.writeAsStringSync(newBinaryNameCmakeListsString);
 
-    _logger.i('Linux binary name set to: `$exeName` (CMakeLists.txt)');
+    PackageRenamePlusLogger.info(
+        'Linux binary name set to: `$exeName` (CMakeLists.txt)');
   } on _PackageRenameException catch (e) {
-    _logger
-      ..e('${e.message}ERR Code: ${e.code}')
-      ..e('Linux Executable Name change failed!!!');
+    PackageRenamePlusLogger.error('${e.message}ERR Code: ${e.code}');
+    PackageRenamePlusLogger.error('Linux Executable Name change failed!!!');
   } catch (e) {
-    _logger
-      ..w(e.toString())
-      ..e('ERR Code: 255')
-      ..e('Linux Executable Name change failed!!!');
+    PackageRenamePlusLogger.warning(e.toString());
+    PackageRenamePlusLogger.error('ERR Code: 255');
+    PackageRenamePlusLogger.error('Linux Executable Name change failed!!!');
   } finally {
-    if (exeName != null) _logger.f(_minorTaskDoneLine);
+    if (exeName != null) PackageRenamePlusLogger.warning(_minorTaskDoneLine);
   }
 }

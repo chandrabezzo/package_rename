@@ -1,4 +1,4 @@
-part of '../package_rename.dart';
+part of '../../package_rename_plus.dart';
 
 void _setWebConfigurations(dynamic webConfig) {
   try {
@@ -15,16 +15,14 @@ void _setWebConfigurations(dynamic webConfig) {
     _setWebDescription(webConfigMap[_descriptionKey]);
     _setPWADescription(webConfigMap[_descriptionKey]);
   } on _PackageRenameException catch (e) {
-    _logger
-      ..e('${e.message}ERR Code: ${e.code}')
-      ..e('Skipping Web configuration!!!');
+    PackageRenamePlusLogger.error('${e.message}ERR Code: ${e.code}');
+    PackageRenamePlusLogger.error('Skipping Web configuration!!!');
   } catch (e) {
-    _logger
-      ..w(e.toString())
-      ..e('ERR Code: 255')
-      ..e('Skipping Web configuration!!!');
+    PackageRenamePlusLogger.warning(e.toString());
+    PackageRenamePlusLogger.error('ERR Code: 255');
+    PackageRenamePlusLogger.error('Skipping Web configuration!!!');
   } finally {
-    if (webConfig != null) _logger.w(_majorTaskDoneLine);
+    if (webConfig != null) PackageRenamePlusLogger.warning(_majorTaskDoneLine);
   }
 }
 
@@ -47,18 +45,16 @@ void _setWebTitle(dynamic appName) {
 
     webIndexFile.writeAsStringSync('${webIndexDocument.outerHtml}\n');
 
-    _logger.i('Web title set to: `$appName` (index.html)');
+    PackageRenamePlusLogger.info('Web title set to: `$appName` (index.html)');
   } on _PackageRenameException catch (e) {
-    _logger
-      ..e('${e.message}ERR Code: ${e.code}')
-      ..e('Web Title change failed!!!');
+    PackageRenamePlusLogger.error('${e.message}ERR Code: ${e.code}');
+    PackageRenamePlusLogger.error('Web Title change failed!!!');
   } catch (e) {
-    _logger
-      ..w(e.toString())
-      ..e('ERR Code: 255')
-      ..e('Web Title change failed!!!');
+    PackageRenamePlusLogger.warning(e.toString());
+    PackageRenamePlusLogger.error('ERR Code: 255');
+    PackageRenamePlusLogger.error('Web Title change failed!!!');
   } finally {
-    if (appName != null) _logger.f(_minorTaskDoneLine);
+    if (appName != null) PackageRenamePlusLogger.warning(_minorTaskDoneLine);
   }
 }
 
@@ -74,7 +70,7 @@ void _setPWAAppName(dynamic appName, dynamic shortAppName) {
 
     final webManifestFile = File(_webManifestFilePath);
     if (!webManifestFile.existsSync()) {
-      _logger.w('Web manifest.json not found!!!');
+      PackageRenamePlusLogger.warning('Web manifest.json not found!!!');
       return;
     }
 
@@ -89,19 +85,18 @@ void _setPWAAppName(dynamic appName, dynamic shortAppName) {
     const encoder = JsonEncoder.withIndent('    ');
     webManifestFile.writeAsStringSync('${encoder.convert(webManifestJson)}\n');
 
-    _logger.i('PWA name set to: `$appName` (manifest.json)');
-    _logger.i('PWA short name set to: `$actualShortAppName` (manifest.json)');
+    PackageRenamePlusLogger.info('PWA name set to: `$appName` (manifest.json)');
+    PackageRenamePlusLogger.info(
+        'PWA short name set to: `$actualShortAppName` (manifest.json)');
   } on _PackageRenameException catch (e) {
-    _logger
-      ..e('${e.message}ERR Code: ${e.code}')
-      ..e('PWA Name/Short Name change failed!!!');
+    PackageRenamePlusLogger.error('${e.message}ERR Code: ${e.code}');
+    PackageRenamePlusLogger.error('PWA Name/Short Name change failed!!!');
   } catch (e) {
-    _logger
-      ..w(e.toString())
-      ..e('ERR Code: 255')
-      ..e('PWA Name/Short Name change failed!!!');
+    PackageRenamePlusLogger.warning(e.toString());
+    PackageRenamePlusLogger.error('ERR Code: 255');
+    PackageRenamePlusLogger.error('PWA Name/Short Name change failed!!!');
   } finally {
-    if (appName != null) _logger.f(_minorTaskDoneLine);
+    if (appName != null) PackageRenamePlusLogger.warning(_minorTaskDoneLine);
   }
 }
 
@@ -123,18 +118,19 @@ void _setWebDescription(dynamic description) {
 
     webIndexFile.writeAsStringSync('${webIndexDocument.outerHtml}\n');
 
-    _logger.i('Web description set to: `$description` (index.html)');
+    PackageRenamePlusLogger.info(
+        'Web description set to: `$description` (index.html)');
   } on _PackageRenameException catch (e) {
-    _logger
-      ..e('${e.message}ERR Code: ${e.code}')
-      ..e('Web Description change failed!!!');
+    PackageRenamePlusLogger.error('${e.message}ERR Code: ${e.code}');
+    PackageRenamePlusLogger.error('Web Description change failed!!!');
   } catch (e) {
-    _logger
-      ..w(e.toString())
-      ..e('ERR Code: 255')
-      ..e('Web Description change failed!!!');
+    PackageRenamePlusLogger.warning(e.toString());
+    PackageRenamePlusLogger.error('ERR Code: 255');
+    PackageRenamePlusLogger.error('Web Description change failed!!!');
   } finally {
-    if (description != null) _logger.f(_minorTaskDoneLine);
+    if (description != null) {
+      PackageRenamePlusLogger.warning(_minorTaskDoneLine);
+    }
   }
 }
 
@@ -145,7 +141,7 @@ void _setPWADescription(dynamic description) {
 
     final webManifestFile = File(_webManifestFilePath);
     if (!webManifestFile.existsSync()) {
-      _logger.w('Web manifest.json not found!!!');
+      PackageRenamePlusLogger.warning('Web manifest.json not found!!!');
       return;
     }
 
@@ -159,17 +155,18 @@ void _setPWADescription(dynamic description) {
     const encoder = JsonEncoder.withIndent('    ');
     webManifestFile.writeAsStringSync('${encoder.convert(webManifestJson)}\n');
 
-    _logger.i('PWA description set to: `$description` (manifest.json)');
+    PackageRenamePlusLogger.info(
+        'PWA description set to: `$description` (manifest.json)');
   } on _PackageRenameException catch (e) {
-    _logger
-      ..e('${e.message}ERR Code: ${e.code}')
-      ..e('PWA Description change failed!!!');
+    PackageRenamePlusLogger.error('${e.message}ERR Code: ${e.code}');
+    PackageRenamePlusLogger.error('PWA Description change failed!!!');
   } catch (e) {
-    _logger
-      ..w(e.toString())
-      ..e('ERR Code: 255')
-      ..e('PWA Description change failed!!!');
+    PackageRenamePlusLogger.warning(e.toString());
+    PackageRenamePlusLogger.error('ERR Code: 255');
+    PackageRenamePlusLogger.error('PWA Description change failed!!!');
   } finally {
-    if (description != null) _logger.f(_minorTaskDoneLine);
+    if (description != null) {
+      PackageRenamePlusLogger.warning(_minorTaskDoneLine);
+    }
   }
 }

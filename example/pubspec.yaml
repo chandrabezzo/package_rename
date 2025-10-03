@@ -33,7 +33,7 @@ dependencies:
 
 dev_dependencies:
   flutter_lints: ^6.0.0
-  package_rename:
+  package_rename_plus:
     # When depending on this package from a real application you should use:
     #   package_rename: ^x.y.z
     # See https://dart.dev/tools/pub/dependencies#version-constraints

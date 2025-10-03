@@ -1,5 +1,7 @@
-# Package Rename
-
+# Package Rename Plus
+This a fork repository from official [package_rename](https://pub.dev/packages/package_rename) using different approach to replace the configuration.
+Fixed ios issue about replace bundle identifier with or without extension targets.
+Removed logger dependency that can be solved using debugPrint only to minimize dependency to others packages/plugins.
 A Blazingly Fast way to configure your Bleeding Edge flutter project to be production ready.
 
 [![pub package][package_svg]][package]
@@ -20,7 +22,7 @@ For more info see [list of changed fields](CHANGED_FIELDS.md)
 
 ```yaml
 dev_dependencies:
-  package_rename: ^1.10.0
+  package_rename_plus: ^1.11.0
 ```
 
 #### Create configuration
@@ -79,7 +81,7 @@ Execute the command as per your config location:
 if config file exists in either pubspec.yaml or root path:
 
 ```bash
-dart run package_rename
+dart run package_rename_plus
 ```
 
 OR
@@ -87,13 +89,13 @@ OR
 if config file exists in a custom folder:
 
 ```bash
-dart run package_rename --path="path/to/package_rename_config.yaml"
+dart run package_rename_plus --path="path/to/package_rename_config.yaml"
 ```
 
 or
 
 ```bash
-dart run package_rename -p "path/to/package_rename_config.yaml"
+dart run package_rename_plus -p "path/to/package_rename_config.yaml"
 ```
 
 ## Flavour Support
@@ -110,19 +112,19 @@ package_rename_config-flavour_name:
 And then run the following command:
 
 ```bash
-dart run package_rename --flavour=flavour_name
+dart run package_rename_plus --flavour=flavour_name
 ```
 
 or
 
 ```bash
-dart run package_rename -f flavour_name
+dart run package_rename_plus -f flavour_name
 ```
 
 With custom config file location:
 
 ```bash
-dart run package_rename --flavour=flavour_name --path="path/to/package_rename_config.yaml"
+dart run package_rename_plus --flavour=flavour_name --path="path/to/package_rename_config.yaml"
 ```
 
 ## Known Issues
@@ -157,14 +159,14 @@ Now you can deploy your production ready app to change the _WORLD!_
 
 <!-- Badges URLs -->
 
-[package_svg]: https://img.shields.io/pub/v/package_rename.svg?color=blueviolet
-[license_svg]: https://img.shields.io/github/license/OutdatedGuy/package_rename.svg?color=purple
-[issues_svg]: https://img.shields.io/github/issues/OutdatedGuy/package_rename.svg
-[issues_closed_svg]: https://img.shields.io/github/issues-closed/OutdatedGuy/package_rename.svg?color=green
+[package_svg]: https://img.shields.io/pub/v/package_rename_plus.svg?color=blueviolet
+[license_svg]: https://img.shields.io/github/license/chandrabezzo/package_rename.svg?color=purple
+[issues_svg]: https://img.shields.io/github/issues/chandrabezzo/package_rename.svg
+[issues_closed_svg]: https://img.shields.io/github/issues-closed/chandrabezzo/package_rename.svg?color=green
 
 <!-- Links -->
 
-[package]: https://pub.dev/packages/package_rename
-[repository]: https://github.com/OutdatedGuy/package_rename
-[issues]: https://github.com/OutdatedGuy/package_rename/issues
-[issues_closed]: https://github.com/OutdatedGuy/package_rename/issues?q=is%3Aissue+is%3Aclosed
+[package]: https://pub.dev/packages/package_rename_plus
+[repository]: https://github.com/chandrabezzo/package_rename
+[issues]: https://github.com/chandrabezzo/package_rename/issues
+[issues_closed]: https://github.com/chandrabezzo/package_rename/issues?q=is%3Aissue+is%3Aclosed

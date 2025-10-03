@@ -1,3 +1,7 @@
+## 1.11.0
+
+- fix(ios): fixed replace `PRODUCT_BUNDLE_IDENTIFIER` with or without extension targets
+
 ## 1.10.0
 
 - feat(android): prefer Kotlin DSL (`.gradle.kts`) over Groovy DSL (`.gradle`) when available in [09409d6](https://github.com/OutdatedGuy/package_rename/commit/09409d61081ad9ee6a382e975e953e4281e52ccf)
