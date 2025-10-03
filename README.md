@@ -1,16 +1,18 @@
 # Package Rename Plus
-
+This a fork repository from official [package_rename](https://pub.dev/packages/package_rename) using different approach to replace the configuration.
+Fixed ios issue about replace bundle identifier with or without extension targets.
+Removed logger dependency that can be solved using debugPrint only to minimize dependency to others packages/plugins.
 A Blazingly Fast way to configure your Bleeding Edge flutter project to be production ready.
 
+[![pub package][package_svg]][package]
 [![GitHub][license_svg]](LICENSE)
-[![style: very good analysis][lints_svg]](https://pub.dev/packages/very_good_analysis)
 
-[![GitHub issues][issues_svg]](https://github.com/chandrabezzo/package_rename/issues)
-[![GitHub issues closed][issues_closed_svg]](https://github.com/chandrabezzo/package_rename/issues?q=is%3Aissue+is%3Aclosed)
+[![GitHub issues][issues_svg]][issues]
+[![GitHub issues closed][issues_closed_svg]][issues_closed]
 
 <hr />
 
-Package Rename handles changing **_33 fields_** across **_17 files_** on **_6 platforms_** so you can focus on your awesome project.
+Package Rename handles changing **_37 fields_** across **_19 files_** on **_6 platforms_** so you can focus on your awesome project.
 
 For more info see [list of changed fields](CHANGED_FIELDS.md)
 
@@ -20,7 +22,7 @@ For more info see [list of changed fields](CHANGED_FIELDS.md)
 
 ```yaml
 dev_dependencies:
-  package_rename_plus: ^1.0.1
+  package_rename_plus: ^1.11.0
 ```
 
 #### Create configuration
@@ -59,7 +61,8 @@ package_rename_config:
     copyright_notice: # (String) The product copyright of the macos app
 
   web:
-    app_name: # (String) The title and display name of the web app and PWA
+    app_name: # (String) The title of the web app and PWA
+    short_app_name: # (String) The short display name of the PWA (Optional, defaults to app_name if not set)
     description: # (String) The description of the web app and PWA
 
   windows:
@@ -124,14 +127,46 @@ With custom config file location:
 dart run package_rename_plus --flavour=flavour_name --path="path/to/package_rename_config.yaml"
 ```
 
+## Known Issues
+
+### iOS and macOS issues with `PRODUCT_BUNDLE_IDENTIFIER`:
+
+The `PRODUCT_BUNDLE_IDENTIFIER`'s in **ios/Runner.xcodeproj/project.pbxproj** and **macos/Runner.xcodeproj/project.pbxproj** have different values for different targets. Like, in my case:
+
+**DEFAULT**
+
+- `rocks.outdatedguy.packageRenameExample`
+- `rocks.outdatedguy.packageRenameExample.RunnerTests`
+
+**EXTENSIONS**
+
+- `rocks.outdatedguy.packageRenameExample.Share-Extension`
+- `rocks.outdatedguy.packageRenameExample.NotificationServiceExtension`
+- blah blah blah...
+
+Hence, to properly change the `PRODUCT_BUNDLE_IDENTIFIER` without removing the **Extension** name, make sure all `PRODUCT_BUNDLE_IDENTIFIER`'s except the **DEFAULT** ones are enclosed in double quotes (`""`).
+
+```diff
+- PRODUCT_BUNDLE_IDENTIFIER = rocks.outdatedguy.packageRenameExample.Share-Extension;
++ PRODUCT_BUNDLE_IDENTIFIER = "rocks.outdatedguy.packageRenameExample.Share-Extension";
+```
+
 ## And that's it! 🎉
 
 Now you can deploy your production ready app to change the _WORLD!_
 
+### If you liked the package, then please give it a [Like 👍🏼][package] and [Star ⭐][repository]
+
 <!-- Badges URLs -->
 
-[package_svg]: https://img.shields.io/pub/v/package_rename.svg?color=blueviolet
+[package_svg]: https://img.shields.io/pub/v/package_rename_plus.svg?color=blueviolet
 [license_svg]: https://img.shields.io/github/license/chandrabezzo/package_rename.svg?color=purple
-[lints_svg]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
 [issues_svg]: https://img.shields.io/github/issues/chandrabezzo/package_rename.svg
 [issues_closed_svg]: https://img.shields.io/github/issues-closed/chandrabezzo/package_rename.svg?color=green
+
+<!-- Links -->
+
+[package]: https://pub.dev/packages/package_rename_plus
+[repository]: https://github.com/chandrabezzo/package_rename
+[issues]: https://github.com/chandrabezzo/package_rename/issues
+[issues_closed]: https://github.com/chandrabezzo/package_rename/issues?q=is%3Aissue+is%3Aclosed

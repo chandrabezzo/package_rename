@@ -4,15 +4,15 @@
 package_rename_config:
   android:
     app_name: Package Rename Demo
-    package_name: com.solusibejo.new
-    override_old_package: com.example.example
+    package_name: rocks.outdatedguy.packagerenamedemo
+    override_old_package: com.example.package_rename_example
     lang: kotlin
 
   ios:
     app_name: Package Rename Demo
     bundle_name: renamedemo
-    override_old_package: com.example.example
-    package_name: com.solusibejo.new
+    override_old_package: com.example.packageRenameExample
+    package_name: rocks.outdatedguy.packagerenamedemo
 
   web:
     app_name: Package Rename Demo
@@ -20,19 +20,19 @@ package_rename_config:
 
   linux:
     app_name: Package Rename Demo
-    package_name: com.solusibejo.new
+    package_name: rocks.outdatedguy.packagerenamedemo
     exe_name: renamedemo-linux-x64
 
   windows:
     app_name: Package Rename Demo
-    organization: SolusiBejo
-    copyright_notice: Copyright ©️ 2024 SolusiBejo. All rights reserved.
+    organization: OutdatedGuy
+    copyright_notice: Copyright ©️ 2022 OutdatedGuy. All rights reserved.
     exe_name: renamedemo-win32
 
   macos:
     app_name: Package Rename Demo
-    package_name: com.solusibejo.new
-    copyright_notice: Copyright ©️ 2024 SolusiBejo. All rights reserved.
+    package_name: rocks.outdatedguy.packagerenamedemo
+    copyright_notice: Copyright ©️ 2022 OutdatedGuy. All rights reserved.
 ```
 
 ## Flavour Configuration
@@ -41,15 +41,14 @@ package_rename_config:
 package_rename_config-development:
   android:
     app_name: Development Package Rename Demo
-    package_name: com.solusibejo.new.dev
+    package_name: rocks.outdatedguy.packagerenamedemo.dev
     override_old_package: com.example.example
     lang: kotlin
 
   ios:
     app_name: Development Package Rename Demo
     bundle_name: renamedemo
-    override_old_package: com.example.example
-    package_name: com.solusibejo.new.dev
+    package_name: rocks.outdatedguy.packagerenamedemo.dev
 
   web:
     app_name: Development Package Rename Demo
@@ -57,16 +56,16 @@ package_rename_config-development:
 
   linux:
     app_name: Development Package Rename Demo
-    package_name: com.solusibejo.new.dev
+    package_name: rocks.outdatedguy.packagerenamedemo.dev
     exe_name: dev-renamedemo-linux-x64
 
   windows:
     app_name: Development Package Rename Demo
-    organization: SolusiBejo
+    organization: OutdatedGuy
 
   macos:
     app_name: Development Package Rename Demo
-    package_name: com.solusibejo.new.dev
+    package_name: rocks.outdatedguy.packagerenamedemo.dev
 ```
 
 <hr>
@@ -75,15 +74,14 @@ package_rename_config-development:
 package_rename_config-production:
   android:
     app_name: Production Package Rename Demo
-    package_name: com.solusibejo.new.prod
+    package_name: rocks.outdatedguy.packagerenamedemo.prod
     override_old_package: com.example.example
     lang: kotlin
 
   ios:
     app_name: Production Package Rename Demo
     bundle_name: renamedemo
-    override_old_package: com.example.example
-    package_name: com.solusibejo.new.prod
+    package_name: rocks.outdatedguy.packagerenamedemo.prod
 
   web:
     app_name: Production Package Rename Demo
@@ -91,14 +89,14 @@ package_rename_config-production:
 
   linux:
     app_name: Production Package Rename Demo
-    package_name: com.solusibejo.new.prod
+    package_name: rocks.outdatedguy.packagerenamedemo.prod
     exe_name: prod-renamedemo-linux-x64
 
   windows:
     app_name: Production Package Rename Demo
-    organization: SolusiBejo
+    organization: OutdatedGuy
 
   macos:
     app_name: Production Package Rename Demo
-    package_name: com.solusibejo.new.prod
+    package_name: rocks.outdatedguy.packagerenamedemo.prod
 ```

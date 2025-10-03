@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 part of '../../package_rename_plus.dart';
 
 void _setMacOSConfigurations(dynamic macOSConfig) {
@@ -13,14 +11,16 @@ void _setMacOSConfigurations(dynamic macOSConfig) {
     _setMacOSBundleID(macOSConfigMap[_packageNameKey]);
     _setMacOSCopyright(macOSConfigMap[_copyrightKey]);
   } on _PackageRenameException catch (e) {
-    print('${e.message}ERR Code: ${e.code}');
-    print('Skipping MacOS configuration!!!');
+    PackageRenamePlusLogger.error('${e.message}ERR Code: ${e.code}');
+    PackageRenamePlusLogger.error('Skipping MacOS configuration!!!');
   } catch (e) {
-    print(e);
-    print('ERR Code: 255');
-    print('Skipping MacOS configuration!!!');
+    PackageRenamePlusLogger.warning(e.toString());
+    PackageRenamePlusLogger.error('ERR Code: 255');
+    PackageRenamePlusLogger.error('Skipping MacOS configuration!!!');
   } finally {
-    if (macOSConfig != null) print(_majorTaskDoneLine);
+    if (macOSConfig != null) {
+      PackageRenamePlusLogger.warning(_majorTaskDoneLine);
+    }
   }
 }
 
@@ -33,14 +33,14 @@ void _setMacOSAppName(dynamic appName) {
     _setMacOSBuildableName(appName);
     _setMacOSAppNameInProjectFile(appName);
   } on _PackageRenameException catch (e) {
-    print('${e.message}ERR Code: ${e.code}');
-    print('MacOS App Name change failed!!!');
+    PackageRenamePlusLogger.error('${e.message}ERR Code: ${e.code}');
+    PackageRenamePlusLogger.error('MacOS App Name change failed!!!');
   } catch (e) {
-    print(e);
-    print('ERR Code: 255');
-    print('MacOS App Name change failed!!!');
+    PackageRenamePlusLogger.warning(e.toString());
+    PackageRenamePlusLogger.error('ERR Code: 255');
+    PackageRenamePlusLogger.error('MacOS App Name change failed!!!');
   } finally {
-    if (appName != null) print(_minorTaskDoneLine);
+    if (appName != null) PackageRenamePlusLogger.info(_minorTaskDoneLine);
   }
 }
 
@@ -59,14 +59,15 @@ void _setMacOSProductName(String productName) {
 
     appInfoFile.writeAsStringSync(newProductNameAppInfoString);
 
-    print('MacOS product name set to: `$productName` (AppInfo.xcconfig)');
+    PackageRenamePlusLogger.info(
+        'MacOS product name set to: `$productName` (AppInfo.xcconfig)');
   } on _PackageRenameException catch (e) {
-    print('${e.message}ERR Code: ${e.code}');
-    print('MacOS Product Name change failed!!!');
+    PackageRenamePlusLogger.error('${e.message}ERR Code: ${e.code}');
+    PackageRenamePlusLogger.error('MacOS Product Name change failed!!!');
   } catch (e) {
-    print(e);
-    print('ERR Code: 255');
-    print('MacOS Product Name change failed!!!');
+    PackageRenamePlusLogger.warning(e.toString());
+    PackageRenamePlusLogger.error('ERR Code: 255');
+    PackageRenamePlusLogger.error('MacOS Product Name change failed!!!');
   }
 }
 
@@ -85,16 +86,15 @@ void _setMacOSBuildableName(String buildableName) {
 
     runnerXCSchemeFile.writeAsStringSync(newBuildableNameXCSchemeString);
 
-    print(
-      'MacOS buildable name set to: `$buildableName` (Runner.xcscheme)',
-    );
+    PackageRenamePlusLogger.info(
+        'MacOS buildable name set to: `$buildableName` (Runner.xcscheme)');
   } on _PackageRenameException catch (e) {
-    print('${e.message}ERR Code: ${e.code}');
-    print('MacOS Buildable Name change failed!!!');
+    PackageRenamePlusLogger.error('${e.message}ERR Code: ${e.code}');
+    PackageRenamePlusLogger.error('MacOS Buildable Name change failed!!!');
   } catch (e) {
-    print(e);
-    print('ERR Code: 255');
-    print('MacOS Buildable Name change failed!!!');
+    PackageRenamePlusLogger.warning(e.toString());
+    PackageRenamePlusLogger.error('ERR Code: 255');
+    PackageRenamePlusLogger.error('MacOS Buildable Name change failed!!!');
   }
 }
 
@@ -130,14 +130,15 @@ void _setMacOSAppNameInProjectFile(String appName) {
 
     projectFile.writeAsStringSync(newDotAppProjectString);
 
-    print('MacOS .app name set to: `$appName.app` (project.pbxproj)');
+    PackageRenamePlusLogger.info(
+        'MacOS .app name set to: `$appName.app` (project.pbxproj)');
   } on _PackageRenameException catch (e) {
-    print('${e.message}ERR Code: ${e.code}');
-    print('MacOS .app Name change failed!!!');
+    PackageRenamePlusLogger.error('${e.message}ERR Code: ${e.code}');
+    PackageRenamePlusLogger.error('MacOS .app Name change failed!!!');
   } catch (e) {
-    print(e);
-    print('ERR Code: 255');
-    print('MacOS .app Name change failed!!!');
+    PackageRenamePlusLogger.warning(e.toString());
+    PackageRenamePlusLogger.error('ERR Code: 255');
+    PackageRenamePlusLogger.error('MacOS .app Name change failed!!!');
   }
 }
 
@@ -149,14 +150,16 @@ void _setMacOSBundleID(dynamic packageName) {
     _setMacOSAppInfoBundleID(packageName);
     _setMacOSProjectFileBundleID(packageName);
   } on _PackageRenameException catch (e) {
-    print('${e.message}ERR Code: ${e.code}');
-    print('MacOS Bundle ID change failed!!!');
+    PackageRenamePlusLogger.error('${e.message}ERR Code: ${e.code}');
+    PackageRenamePlusLogger.error('MacOS Bundle ID change failed!!!');
   } catch (e) {
-    print(e);
-    print('ERR Code: 255');
-    print('MacOS Bundle ID change failed!!!');
+    PackageRenamePlusLogger.warning(e.toString());
+    PackageRenamePlusLogger.error('ERR Code: 255');
+    PackageRenamePlusLogger.error('MacOS Bundle ID change failed!!!');
   } finally {
-    if (packageName != null) print(_minorTaskDoneLine);
+    if (packageName != null) {
+      PackageRenamePlusLogger.warning(_minorTaskDoneLine);
+    }
   }
 }
 
@@ -175,14 +178,17 @@ void _setMacOSAppInfoBundleID(String bundleID) {
 
     appInfoFile.writeAsStringSync(newPackageNameAppInfoString);
 
-    print('MacOS bundle id set to: `$bundleID` (AppInfo.xcconfig)');
+    PackageRenamePlusLogger.info(
+        'MacOS bundle id set to: `$bundleID` (AppInfo.xcconfig)');
   } on _PackageRenameException catch (e) {
-    print('${e.message}ERR Code: ${e.code}');
-    print('MacOS Bundle ID change failed!!! (AppInfo.xcconfig)');
+    PackageRenamePlusLogger.error('${e.message}ERR Code: ${e.code}');
+    PackageRenamePlusLogger.error(
+        'MacOS Bundle ID change failed!!! (AppInfo.xcconfig)');
   } catch (e) {
-    print(e);
-    print('ERR Code: 255');
-    print('MacOS Bundle ID change failed!!! (AppInfo.xcconfig)');
+    PackageRenamePlusLogger.warning(e.toString());
+    PackageRenamePlusLogger.error('ERR Code: 255');
+    PackageRenamePlusLogger.error(
+        'MacOS Bundle ID change failed!!! (AppInfo.xcconfig)');
   }
 }
 
@@ -205,7 +211,7 @@ void _setMacOSProjectFileBundleID(String bundleID) {
         // `PRODUCT_BUNDLE_IDENTIFIER = "{{BUNDLE_ID}}.{{EXTENSION_NAME}}";`
         .replaceAllMapped(
       RegExp(
-        r'PRODUCT_BUNDLE_IDENTIFIER = "([A-Za-z0-9.-]+)\.([A-Za-z0-9.-]+)";',
+        r'PRODUCT_BUNDLE_IDENTIFIER = "([A-Za-z0-9.-_]+)\.([A-Za-z0-9.-_]+)";',
       ),
       (match) {
         final extensionName = match.group(2);
@@ -215,14 +221,17 @@ void _setMacOSProjectFileBundleID(String bundleID) {
 
     macOSProjectFile.writeAsStringSync(newBundleIDMacOSProjectString);
 
-    print('MacOS bundle id set to: `$bundleID` (project.pbxproj)');
+    PackageRenamePlusLogger.info(
+        'MacOS bundle id set to: `$bundleID` (project.pbxproj)');
   } on _PackageRenameException catch (e) {
-    print('${e.message}ERR Code: ${e.code}');
-    print('MacOS Bundle ID change failed!!! (project.pbxproj)');
+    PackageRenamePlusLogger.error('${e.message}ERR Code: ${e.code}');
+    PackageRenamePlusLogger.error(
+        'MacOS Bundle ID change failed!!! (project.pbxproj)');
   } catch (e) {
-    print(e);
-    print('ERR Code: 255');
-    print('MacOS Bundle ID change failed!!! (project.pbxproj)');
+    PackageRenamePlusLogger.warning(e.toString());
+    PackageRenamePlusLogger.error('ERR Code: 255');
+    PackageRenamePlusLogger.error(
+        'MacOS Bundle ID change failed!!! (project.pbxproj)');
   }
 }
 
@@ -244,15 +253,16 @@ void _setMacOSCopyright(dynamic notice) {
 
     appInfoFile.writeAsStringSync(newCopyrightAppInfoString);
 
-    print('MacOS product copyright set to: `$notice` (AppInfo.xcconfig)');
+    PackageRenamePlusLogger.info(
+        'MacOS product copyright set to: `$notice` (AppInfo.xcconfig)');
   } on _PackageRenameException catch (e) {
-    print('${e.message}ERR Code: ${e.code}');
-    print('MacOS Product Copyright change failed!!!');
+    PackageRenamePlusLogger.error('${e.message}ERR Code: ${e.code}');
+    PackageRenamePlusLogger.error('MacOS Product Copyright change failed!!!');
   } catch (e) {
-    print(e);
-    print('ERR Code: 255');
-    print('MacOS Product Copyright change failed!!!');
+    PackageRenamePlusLogger.warning(e.toString());
+    PackageRenamePlusLogger.error('ERR Code: 255');
+    PackageRenamePlusLogger.error('MacOS Product Copyright change failed!!!');
   } finally {
-    if (notice != null) print(_minorTaskDoneLine);
+    if (notice != null) PackageRenamePlusLogger.warning(_minorTaskDoneLine);
   }
 }

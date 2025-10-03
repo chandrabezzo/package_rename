@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 part of '../../package_rename_plus.dart';
 
 void _setIOSConfigurations(dynamic iosConfig) {
@@ -16,14 +14,14 @@ void _setIOSConfigurations(dynamic iosConfig) {
       packageName: iosConfigMap[_packageNameKey],
     );
   } on _PackageRenameException catch (e) {
-    print('${e.message}ERR Code: ${e.code}');
-    print('Skipping iOS configuration!!!');
+    PackageRenamePlusLogger.error('${e.message}ERR Code: ${e.code}');
+    PackageRenamePlusLogger.error('Skipping iOS configuration!!!');
   } catch (e) {
-    print(e);
-    print('ERR Code: 255');
-    print('Skipping iOS configuration!!!');
+    PackageRenamePlusLogger.warning(e.toString());
+    PackageRenamePlusLogger.error('ERR Code: 255');
+    PackageRenamePlusLogger.error('Skipping iOS configuration!!!');
   } finally {
-    if (iosConfig != null) print(_majorTaskDoneLine);
+    if (iosConfig != null) PackageRenamePlusLogger.warning(_majorTaskDoneLine);
   }
 }
 
@@ -45,16 +43,17 @@ void _setIOSDisplayName(dynamic appName) {
 
     iosInfoPlistFile.writeAsStringSync(newDisplayNameIOSInfoPlistString);
 
-    print('iOS display name set to: `$appName` (Info.plist)');
+    PackageRenamePlusLogger.info(
+        'iOS display name set to: `$appName` (Info.plist)');
   } on _PackageRenameException catch (e) {
-    print('${e.message}ERR Code: ${e.code}');
-    print('iOS Display Name change failed!!!');
+    PackageRenamePlusLogger.error('${e.message}ERR Code: ${e.code}');
+    PackageRenamePlusLogger.error('iOS Display Name change failed!!!');
   } catch (e) {
-    print(e);
-    print('ERR Code: 255');
-    print('iOS Display Name change failed!!!');
+    PackageRenamePlusLogger.warning(e.toString());
+    PackageRenamePlusLogger.error('ERR Code: 255');
+    PackageRenamePlusLogger.error('iOS Display Name change failed!!!');
   } finally {
-    if (appName != null) print(_minorTaskDoneLine);
+    if (appName != null) PackageRenamePlusLogger.warning(_minorTaskDoneLine);
   }
 }
 
@@ -64,9 +63,8 @@ void _setIOSBundleName(dynamic bundleName) {
     if (bundleName is! String) throw _PackageRenameErrors.invalidBundleName;
 
     if (bundleName.length > 15) {
-      print(
-        'Bundle name is too long. Maximum length should be 15'
-        ' characters.',
+      PackageRenamePlusLogger.warning(
+        'Bundle name is too long. Maximum length should be 15 characters.',
       );
     }
 
@@ -83,20 +81,24 @@ void _setIOSBundleName(dynamic bundleName) {
 
     iosInfoPlistFile.writeAsStringSync(newBundleNameIOSInfoPlistString);
 
-    print('iOS bundle name set to: `$bundleName` (Info.plist)');
+    PackageRenamePlusLogger.info(
+        'iOS bundle name set to: `$bundleName` (Info.plist)');
   } on _PackageRenameException catch (e) {
-    print('${e.message}ERR Code: ${e.code}');
-    print('iOS Bundle Name change failed!!!');
+    PackageRenamePlusLogger.error('${e.message}ERR Code: ${e.code}');
+    PackageRenamePlusLogger.error('iOS Bundle Name change failed!!!');
   } catch (e) {
-    print(e);
-    print('ERR Code: 255');
-    print('iOS Bundle Name change failed!!!');
+    PackageRenamePlusLogger.warning(e.toString());
+    PackageRenamePlusLogger.error('ERR Code: 255');
+    PackageRenamePlusLogger.error('iOS Bundle Name change failed!!!');
   } finally {
-    if (bundleName != null) print(_minorTaskDoneLine);
+    if (bundleName != null) PackageRenamePlusLogger.warning(_minorTaskDoneLine);
   }
 }
 
-void _setIOSPackageName({dynamic oldPackageName, dynamic packageName}) {
+void _setIOSPackageName({
+  dynamic oldPackageName,
+  dynamic packageName,
+}) {
   try {
     if (packageName == null) return;
     if (packageName is! String) throw _PackageRenameErrors.invalidPackageName;
@@ -135,15 +137,18 @@ void _setIOSPackageName({dynamic oldPackageName, dynamic packageName}) {
 
     iosProjectFile.writeAsStringSync(newBundleIDIOSProjectString);
 
-    print('iOS bundle identifier set to: `$packageName` (project.pbxproj)');
+    PackageRenamePlusLogger.info(
+        'iOS bundle identifier set to: `$packageName` (project.pbxproj)');
   } on _PackageRenameException catch (e) {
-    print('${e.message}ERR Code: ${e.code}');
-    print('iOS Bundle Identifier change failed!!!');
+    PackageRenamePlusLogger.error('${e.message}ERR Code: ${e.code}');
+    PackageRenamePlusLogger.error('iOS Bundle Identifier change failed!!!');
   } catch (e) {
-    print(e);
-    print('ERR Code: 255');
-    print('iOS Bundle Identifier change failed!!!');
+    PackageRenamePlusLogger.warning(e.toString());
+    PackageRenamePlusLogger.error('ERR Code: 255');
+    PackageRenamePlusLogger.error('iOS Bundle Identifier change failed!!!');
   } finally {
-    if (packageName != null) print(_minorTaskDoneLine);
+    if (packageName != null) {
+      PackageRenamePlusLogger.warning(_minorTaskDoneLine);
+    }
   }
 }

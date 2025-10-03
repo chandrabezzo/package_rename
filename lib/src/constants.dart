@@ -8,6 +8,7 @@ const _pubspecFileName = 'pubspec.yaml';
 // ? Android
 const _androidManifestFileName = 'AndroidManifest.xml';
 const _buildGradleFileName = 'build.gradle';
+const _kotlinBuildGradleFileName = 'build.gradle.kts';
 
 // ? iOS
 const _infoPlistFileName = 'Info.plist';
@@ -36,6 +37,7 @@ const _projectFileName = 'project.pbxproj';
 // ! Keys
 const _configKey = 'package_rename_config';
 const _appNameKey = 'app_name';
+const _shortAppNameKey = 'short_app_name';
 const _packageNameKey = 'package_name';
 const _bundleNameKey = 'bundle_name';
 const _descriptionKey = 'description';
@@ -61,6 +63,7 @@ const _webDirPath = 'web';
 
 // ? Linux
 const _linuxDirPath = 'linux';
+const _linuxRunnerDirPath = '$_linuxDirPath/runner';
 
 // ? Windows
 const _windowsDirPath = 'windows';
@@ -88,6 +91,8 @@ const _androidProfileManifestFilePath =
     '$_androidSrcDirPath/$_androidProfileDirName/$_androidManifestFileName';
 const _androidAppLevelBuildGradleFilePath =
     '$_androidAppDirPath/$_buildGradleFileName';
+const _androidAppLevelKotlinBuildGradleFilePath =
+    '$_androidAppDirPath/$_kotlinBuildGradleFileName';
 
 // ? iOS
 const _iosInfoPlistFilePath = '$_iosRunnerDirPath/$_infoPlistFileName';
@@ -100,6 +105,8 @@ const _webManifestFilePath = '$_webDirPath/$_manifestJsonFileName';
 // ? Linux
 const _linuxCMakeListsFilePath = '$_linuxDirPath/$_cMakeListsFileName';
 const _linuxMyApplicationFilePath = '$_linuxDirPath/$_myApplicationFileName';
+const _linuxRunnerMyApplicationFilePath =
+    '$_linuxRunnerDirPath/$_myApplicationFileName';
 
 // ? Windows
 const _windowsCMakeListsFilePath = '$_windowsDirPath/$_cMakeListsFileName';
@@ -123,8 +130,7 @@ package {{packageName}}
 
 import io.flutter.embedding.android.FlutterActivity
 
-class MainActivity: FlutterActivity() {
-}
+class MainActivity : FlutterActivity()
 ''';
 
 const _androidJavaMainActivityTemplate = '''
